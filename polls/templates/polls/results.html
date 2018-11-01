@@ -1,0 +1,21 @@
+<div>
+  {{ question.question_text }}
+</div>
+<div>
+  {{ question.pub_date }}
+</div>
+
+<div>
+  {% if question.choice_set.all %}
+      <ul>
+      {% for choice in question.choice_set.all %}
+          <li>{{ choice.choice_text }}: {{ choice.vote }}</li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No choices are available.</p>
+  {% endif %}
+</div>
+<div>
+  <a href="{% url 'polls:index' %}">Voltar</a>
+</div>
