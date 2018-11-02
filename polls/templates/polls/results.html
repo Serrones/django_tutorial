@@ -1,21 +1,18 @@
 <div>
-  {{ question.question_text }}
+  <h1>{{ question.question_text }}</h1>
 </div>
 <div>
   {{ question.pub_date }}
 </div>
 
 <div>
-  {% if question.choice_set.all %}
-      <ul>
-      {% for choice in question.choice_set.all %}
-          <li>{{ choice.choice_text }}: {{ choice.vote }}</li>
-      {% endfor %}
+  <ul>
+    {% for choice in question.choice_set.all %}
+      <li>{{ choice.choice_text }}: {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
       </ul>
-  {% else %}
-      <p>No choices are available.</p>
-  {% endif %}
-</div>
+  </div>
 <div>
+  <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
   <a href="{% url 'polls:index' %}">Voltar</a>
 </div>
