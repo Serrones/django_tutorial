@@ -164,6 +164,27 @@ class QuestionDetailViewTests(TestCase):
         self.assertContains(response, past_question.question_text)
 
 
+    def test_no_choices_detail(self):
+        """
+        If no choices exist for a question, an appropriate message is displayed.
+        """
+        no_choice = create_question(
+            question_text="Question without choice", days=-5)
+        response = self.client.get(reverse('polls:detail', args=(no_choice.id,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_one_choice_detail(self):
+        """
+        Questions with a choice are displayed on the
+        detail page.
+        """
+        one_choice = create_question(
+            question_text="Question with one choice", days=-5, choice='Choice One')
+        response = self.client.get(reverse('polls:detail', args=(one_choice.id,)))
+        self.assertEqual(
+            response.context['question'], one_choice
+        )
+
 class QuestionResultsViewTests(TestCase):
     def test_future_question_results(self):
         """
@@ -186,3 +207,26 @@ class QuestionResultsViewTests(TestCase):
         url = reverse('polls:results', args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
+
+    def test_no_choices_results(self):
+        """
+        If no choices exist for a question, an appropriate message is displayed.
+        """
+        no_choice = create_question(
+            question_text="Question without choice", days=-5)
+        response = self.client.get(reverse('polls:results', args=(no_choice.id,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_one_choice_results(self):
+        """
+        Questions with a choice are displayed on the
+        results page.
+        """
+        one_choice = create_question(
+            question_text="Question with one choice", days=-5, choice='Choice One')
+        response = self.client.get(reverse('polls:results', args=(one_choice.id,)))
+        self.assertEqual(
+            response.context['question'],
+            one_choice
+        )
