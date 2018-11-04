@@ -1,7 +1,68 @@
 li a {
-    color: green;
+    color: black;
+    font: bold 50px Georgia, serif;
 }
 
-body {
-    background: white url("images/RM_1.png") no-repeat;
+a {
+    color: black;
+    font: bold 10px Georgia, serif;
+}
+
+h1 {
+    color: black;
+    font: bold 50px Georgia, serif;
+    text-shadow: 1px 1px white;
+}
+
+.red_date {
+    color: red;
+    font: bold 18px sans-serif;
+}
+
+input[type=submit] {
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms--user-select: none;
+    user-select: none;
+}
+
+.index {
+    background: url("images/questions.jpg");
+    background-size: cover;
+    background-repeat: no-no-repeat;
+}
+
+.center_with_border {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-shadow: 1px 1px white;
+}
+
+.detail {
+    background: url("images/vote.jpg");
+    background-size: cover;
+    background-repeat: no-no-repeat;
+}
+
+.results {
+    background: url("images/results.png");
+    background-size: cover;
+    background-repeat: no-no-repeat;
 }

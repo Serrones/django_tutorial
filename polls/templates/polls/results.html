@@ -1,18 +1,24 @@
-<div>
-  <h1>{{ question.question_text }}</h1>
-</div>
-<div>
-  {{ question.pub_date }}
-</div>
+{% load static %}
 
-<div>
-  <ul>
-    {% for choice in question.choice_set.all %}
-      <li>{{ choice.choice_text }}: {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-    {% endfor %}
-      </ul>
-  </div>
-<div>
-  <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
-  <a href="{% url 'polls:index' %}">Voltar</a>
-</div>
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<body class="results">
+    <div>
+      <h1>{{ question.question_text }}</h1>
+    </div>
+    <div class="red_date">
+      {{ question.pub_date }}
+    </div>
+
+    <div class="container">
+      <ul>
+        {% for choice in question.choice_set.all %}
+          <li>{{ choice.choice_text }}: {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+          </ul>
+      </div>
+    <div>
+      <a href="{% url 'polls:detail' question.id %}">Vote again?</a><br>
+      <a href="{% url 'polls:index' %}">Voltar</a>
+    </div>
+</body>
